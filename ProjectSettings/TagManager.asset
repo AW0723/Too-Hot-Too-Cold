@@ -6,6 +6,12 @@ TagManager:
   tags:
   - TooCold
   - TooHot
+  - GameManager
+  - TemperatureIndicator
+  - Flag
+  - TooColdPersistent
+  - TooHotPersistent
+  - Ice
   layers:
   - Default
   - TransparentFX

@@ -146,9 +146,10 @@ namespace TarodevController {
 
         #region Walk
 
-        [Header("WALKING")] [SerializeField] private float _acceleration = 90;
-        [SerializeField] private float _moveClamp = 13;
-        [SerializeField] private float _deAcceleration = 60f;
+        //acceleration and moveClamp was originally private
+        [Header("WALKING")] public float _acceleration = 90;
+        public float _moveClamp = 13;
+        public float _deAcceleration = 60f;
         [SerializeField] private float _apexBonus = 2;
 
         private void CalculateWalk() {
