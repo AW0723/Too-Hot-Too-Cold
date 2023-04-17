@@ -4,7 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - TooCold
   - TooHot
   - GameManager
   - TemperatureIndicator
@@ -12,6 +11,14 @@ TagManager:
   - TooColdPersistent
   - TooHotPersistent
   - Ice
+  - TooColdMutable
+  - TooCold
+  - WarmZone
+  - TemperatureMeter
+  - GameOverScreen
+  - UIManager
+  - TooColdTraps
+  - LevelCompleteScreen
   layers:
   - Default
   - TransparentFX
