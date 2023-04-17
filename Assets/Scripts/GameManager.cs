@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SearchService;
+using TarodevController;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
@@ -13,9 +13,15 @@ public class GameManager : MonoBehaviour
     private GameObject tooColdPrstnt;
     private GameObject tooHotPrstnt;
 
+    private GameObject player;
+    private PlayerController playerController;
+    private TemperatureMeter tempMeter;
+
     private const float fadeVal = 0.6f;
     public bool tooCold = true;
     [SerializeField] private int curLevel = 0;
+
+    public Vector3 checkPoint;
 
     private UIManager uiManager;
 
@@ -28,7 +34,10 @@ public class GameManager : MonoBehaviour
         tooHotMap = GameObject.FindGameObjectWithTag("TooHot");
         tooColdPrstnt = GameObject.FindGameObjectWithTag("TooColdPersistent");
         tooHotPrstnt = GameObject.FindGameObjectWithTag("TooHotPersistent");
+        player = GameObject.FindGameObjectWithTag("Player");
         uiManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
+        playerController = player.GetComponent<PlayerController>();
+        tempMeter = GameObject.FindGameObjectWithTag("TemperatureMeter").GetComponent<TemperatureMeter>();
 
         UpdateMap();
     }
@@ -36,7 +45,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void ToggleTooCold()
@@ -80,6 +89,7 @@ public class GameManager : MonoBehaviour
     public void FinishLevel()
     {
         Time.timeScale = 0;
+        playerController._active = false;
         uiManager.FinishLevel();
     }
 
@@ -91,12 +101,17 @@ public class GameManager : MonoBehaviour
     public void DEATH()
     {
         Time.timeScale = 0;
+        playerController._active = false;
         uiManager.GameOver();
     }
 
     public void RestartLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1;
+        playerController._active = true;
+        player.transform.position = checkPoint;
+        tempMeter.Reset();
+        uiManager.HideAll();
     }
 
     public void ExitGame()

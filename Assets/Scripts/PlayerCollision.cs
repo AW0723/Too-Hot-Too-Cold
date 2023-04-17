@@ -15,6 +15,8 @@ public class PlayerCollision : MonoBehaviour
         playerController = GetComponent<PlayerController>();
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         tempMeter = GameObject.FindGameObjectWithTag("TemperatureMeter").GetComponent<TemperatureMeter>();
+
+        gameManager.checkPoint = transform.position;
     }
 
     // Update is called once per frame
@@ -33,11 +35,14 @@ public class PlayerCollision : MonoBehaviour
         if (collision.gameObject.CompareTag("Flag"))
         {
             Debug.Log("Complete");
-            gameManager.FinishLevel();
+            gameManager.checkPoint = transform.position;
         }
         else if (gameManager.tooCold && collision.gameObject.CompareTag("TooColdTraps"))
         {
             gameManager.DEATH();
+        } else if (collision.gameObject.CompareTag("Destination"))
+        {
+            gameManager.FinishLevel();
         }
     }
 

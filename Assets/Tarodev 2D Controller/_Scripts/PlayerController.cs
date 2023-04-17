@@ -23,7 +23,7 @@ namespace TarodevController {
         private float _currentHorizontalSpeed, _currentVerticalSpeed;
 
         // This is horrible, but for some reason colliders are not fully established when update starts...
-        private bool _active;
+        public bool _active;
         void Awake() => Invoke(nameof(Activate), 0.5f);
         void Activate() =>  _active = true;
         

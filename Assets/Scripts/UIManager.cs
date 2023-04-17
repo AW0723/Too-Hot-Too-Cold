@@ -32,4 +32,10 @@ public class UIManager : MonoBehaviour
     {
         levelCompleteScreen.SetActive(true);
     }
+
+    public void HideAll()
+    {
+        gameOverScreen.SetActive(false);
+        levelCompleteScreen.SetActive(false);
+    }
 }

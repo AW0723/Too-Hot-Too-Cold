@@ -19,6 +19,7 @@ TagManager:
   - UIManager
   - TooColdTraps
   - LevelCompleteScreen
+  - Destination
   layers:
   - Default
   - TransparentFX
